@@ -43,7 +43,7 @@ func (r *Resource) Columns() []pluginsdk.Column {
 		{Key: "status", Title: "STATUS", MinWidth: 12},
 		{Key: "version", Title: "VERSION", MinWidth: 12},
 		{Key: "flavor", Title: "CCE FLAVOR", MinWidth: 16},
-		{Key: "availability_zone", Title: "MASTER NODES AVAILABILITY ZONES", MinWidth: 18, Flex: 1},
+		{Key: "availability_zone", Title: "AVAILABILITY ZONES", MinWidth: 18, Flex: 1},
 		{Key: "type", Title: "TYPE", MinWidth: 16},
 	}
 }
@@ -94,7 +94,8 @@ func (r *Resource) Commands() []pluginsdk.Command {
 	return []pluginsdk.Command{
 		{Key: "s", Description: "Show"},
 		{Key: "shift-n", Description: "Nodes", Default: true},
-		{Key: "ctrl-k", Description: "Get Kubeconfig"},
+		{Key: "shift-k", Description: "Show Kubeconfig"},
+		{Key: "ctrl+k", Description: "Get Kubeconfig", StatusLabel: "Downloading..."},
 	}
 }
 
@@ -104,6 +105,10 @@ func (r *Resource) Execute(ctx context.Context, command pluginsdk.Command, row p
 		return r.show(ctx, row.ID)
 	case "shift-n":
 		return r.nodes(ctx, row)
+	case "shift-k":
+		return r.kubeconfig(ctx, row.ID)
+	case "ctrl+k":
+		return r.getKubeconfig(ctx, row)
 	}
 
 	return pluginsdk.Result{}, nil
