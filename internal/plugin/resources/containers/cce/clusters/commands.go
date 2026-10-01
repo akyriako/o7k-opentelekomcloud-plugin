@@ -135,3 +135,16 @@ func (r *Resource) getKubeconfig(ctx context.Context, row pluginsdk.Row) (plugin
 
 	return pluginsdk.Result{}, nil
 }
+
+func (r *Resource) nodePools(ctx context.Context, row pluginsdk.Row) (pluginsdk.Result, error) {
+	scope := make(map[string]string)
+	maps.Copy(scope, pluginsdk.Scope(ctx))
+	scope["cluster_id"] = row.ID
+
+	return pluginsdk.Result{
+		Navigate: &pluginsdk.Navigate{
+			Resource: "cce-nodepools",
+			Scope:    scope,
+		},
+	}, nil
+}

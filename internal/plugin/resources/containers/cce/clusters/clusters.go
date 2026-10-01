@@ -94,6 +94,7 @@ func (r *Resource) Commands() []pluginsdk.Command {
 	return []pluginsdk.Command{
 		{Key: "s", Description: "Show"},
 		{Key: "shift-n", Description: "Nodes", Default: true},
+		{Key: "shift-p", Description: "Node Pools"},
 		{Key: "shift-k", Description: "Show Kubeconfig"},
 		{Key: "ctrl+k", Description: "Get Kubeconfig", StatusLabel: "Downloading..."},
 	}
@@ -105,6 +106,8 @@ func (r *Resource) Execute(ctx context.Context, command pluginsdk.Command, row p
 		return r.show(ctx, row.ID)
 	case "shift-n":
 		return r.nodes(ctx, row)
+	case "shift-p":
+		return r.nodePools(ctx, row)
 	case "shift-k":
 		return r.kubeconfig(ctx, row.ID)
 	case "ctrl+k":

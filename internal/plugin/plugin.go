@@ -30,7 +30,7 @@ func (p *Plugin) Register(resources ...pluginsdk.Resource) {
 func (p *Plugin) Metadata() pluginsdk.Metadata {
 	return pluginsdk.Metadata{
 		Name:    "T Cloud Public",
-		Version: "0.1.0-dev.29",
+		Version: "0.1.0-dev.40",
 		Color:   "#E20074",
 	}
 }
