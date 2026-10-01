@@ -30,7 +30,7 @@ func (r *Resource) Kind() string {
 }
 
 func (r *Resource) Title() string {
-	return "node pools"
+	return "CCE Node Pools"
 }
 
 func (r *Resource) Aliases() []string {
