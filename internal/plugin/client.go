@@ -15,7 +15,7 @@ func newClient(host pluginsdk.Host) *pluginsdk.ClientProvider[*golangsdk.Provide
 	return pluginsdk.NewClientProvider(host, connectClient)
 }
 
-func connectClient(_ context.Context, current pluginsdk.Context) (*golangsdk.ProviderClient, error) {
+func loadCloud(current pluginsdk.Context) (*openstack.Cloud, error) {
 	data, err := os.ReadFile(current.CloudsPath)
 	if err != nil {
 		return nil, fmt.Errorf("reading clouds.yaml %q: %w", current.CloudsPath, err)
@@ -35,7 +35,16 @@ func connectClient(_ context.Context, current pluginsdk.Context) (*golangsdk.Pro
 		cloud.RegionName = current.Region
 	}
 
-	provider, err := openstack.AuthenticatedClientFromCloud(&cloud)
+	return &cloud, nil
+}
+
+func connectClient(_ context.Context, current pluginsdk.Context) (*golangsdk.ProviderClient, error) {
+	cloud, err := loadCloud(current)
+	if err != nil {
+		return nil, err
+	}
+
+	provider, err := openstack.AuthenticatedClientFromCloud(cloud)
 	if err != nil {
 		return nil, fmt.Errorf("authenticating cloud %q: %w", current.Cloud, err)
 	}

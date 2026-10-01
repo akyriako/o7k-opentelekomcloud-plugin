@@ -1,11 +1,8 @@
 package plugin
 
 import (
-	"context"
-
 	"github.com/akyriako/o7k/pluginsdk"
 	golangsdk "github.com/opentelekomcloud/gophertelekomcloud"
-	"github.com/opentelekomcloud/gophertelekomcloud/openstack"
 )
 
 type Plugin struct {
@@ -30,7 +27,7 @@ func (p *Plugin) Register(resources ...pluginsdk.Resource) {
 func (p *Plugin) Metadata() pluginsdk.Metadata {
 	return pluginsdk.Metadata{
 		Name:    "T Cloud Public",
-		Version: "0.1.0-dev.40",
+		Version: "0.2.0-dev.9",
 		Color:   "#E20074",
 	}
 }
@@ -45,16 +42,4 @@ func (p *Plugin) Host() pluginsdk.Host {
 
 func (p *Plugin) Provider() *pluginsdk.ClientProvider[*golangsdk.ProviderClient] {
 	return p.provider
-}
-
-func (p *Plugin) CCEV3(ctx context.Context) (*golangsdk.ServiceClient, error) {
-	return pluginsdk.GetServiceClient(ctx, p.provider, "cce", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
-		return openstack.NewCCE(provider, golangsdk.EndpointOpts{Region: current.Region})
-	})
-}
-
-func (p *Plugin) NetworkV2(ctx context.Context) (*golangsdk.ServiceClient, error) {
-	return pluginsdk.GetServiceClient(ctx, p.provider, "network", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
-		return openstack.NewNetworkV2(provider, golangsdk.EndpointOpts{Region: current.Region})
-	})
 }

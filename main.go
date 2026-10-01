@@ -5,6 +5,7 @@ import (
 	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/clusters"
 	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/nodepools"
 	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/nodes"
+	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/objectstorage/obs/buckets"
 	"github.com/akyriako/o7k/pluginsdk"
 )
 
@@ -15,6 +16,7 @@ func main() {
 		clusters.NewCceClusters(p),
 		nodes.NewCceNodes(p),
 		nodepools.NewCceNodePools(p),
+		buckets.NewObsBuckets(p),
 	)
 
 	pluginsdk.Serve(p)
