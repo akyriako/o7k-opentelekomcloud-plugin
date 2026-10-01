@@ -11,18 +11,6 @@ import (
 	"github.com/opentelekomcloud/gophertelekomcloud/openstack/obs"
 )
 
-func (p *Plugin) CCEV3(ctx context.Context) (*golangsdk.ServiceClient, error) {
-	return pluginsdk.GetServiceClient(ctx, p.provider, "cce", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
-		return openstack.NewCCE(provider, golangsdk.EndpointOpts{Region: current.Region})
-	})
-}
-
-func (p *Plugin) NetworkV2(ctx context.Context) (*golangsdk.ServiceClient, error) {
-	return pluginsdk.GetServiceClient(ctx, p.provider, "network", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
-		return openstack.NewNetworkV2(provider, golangsdk.EndpointOpts{Region: current.Region})
-	})
-}
-
 func (p *Plugin) OBS(ctx context.Context) (*obs.ObsClient, error) {
 	current, err := p.host.Context(ctx)
 	if err != nil {
@@ -92,4 +80,22 @@ func (p *Plugin) OBS(ctx context.Context) (*obs.ObsClient, error) {
 	}
 
 	return client, nil
+}
+
+func (p *Plugin) CCEV3(ctx context.Context) (*golangsdk.ServiceClient, error) {
+	return pluginsdk.GetServiceClient(ctx, p.provider, "cce", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
+		return openstack.NewCCE(provider, golangsdk.EndpointOpts{Region: current.Region})
+	})
+}
+
+func (p *Plugin) NetworkV2(ctx context.Context) (*golangsdk.ServiceClient, error) {
+	return pluginsdk.GetServiceClient(ctx, p.provider, "network", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
+		return openstack.NewNetworkV2(provider, golangsdk.EndpointOpts{Region: current.Region})
+	})
+}
+
+func (p *Plugin) RDSV3(ctx context.Context) (*golangsdk.ServiceClient, error) {
+	return pluginsdk.GetServiceClient(ctx, p.provider, "rds-v3", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
+		return openstack.NewRDSV3(provider, golangsdk.EndpointOpts{Region: current.Region})
+	})
 }
