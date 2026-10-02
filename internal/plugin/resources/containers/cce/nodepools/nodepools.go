@@ -93,8 +93,8 @@ func (r *Resource) Commands() []pluginsdk.Command {
 		{Key: "s", Description: "Show", Default: true},
 		{Key: "shift-f", Description: "Flavor"},
 		{Key: "shift-g", Description: "Security Group"},
-		{Key: "ctrl+u", Description: "Scale Up", StatusLabel: "Scaling up"},
-		{Key: "ctrl+d", Description: "Scale Down", StatusLabel: "Scaling down"},
+		{Key: "ctrl+u", Description: "Scale Up (+1)", StatusLabel: "Scaling up"},
+		{Key: "ctrl+d", Description: "Scale Down (-1)", StatusLabel: "Scaling down"},
 	}
 }
 
