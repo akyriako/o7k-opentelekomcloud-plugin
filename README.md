@@ -6,17 +6,12 @@ The plugin adds support for browsing and interacting with Open Telekom Cloud res
 
 ## Installation
 
-Download the appropriate binary for your platform from the
+Get the URL of the appropriate binary for your platform from the
 [GitHub Releases](https://github.com/akyriako/o7k-opentelekomcloud-plugin/releases)
-page and install it in the o7k plugin directory:
+page and install it in the o7k plugin directory, e.g.:
 
 ```bash
-mkdir -p ~/.config/o7k/plugins
-
-mv o7k-opentelekomcloud-plugin_* \
-  ~/.config/o7k/plugins/o7k-opentelekomcloud-plugin
-
-chmod +x ~/.config/o7k/plugins/o7k-opentelekomcloud-plugin
+o7k plugin install https://github.com/akyriako/o7k-opentelekomcloud-plugin/releases/download/v0.1.0/o7k-opentelekomcloud-plugin_0.1.0_linux_amd64
 ```
 
 Restart o7k after installing or updating the plugin.
