@@ -13,6 +13,15 @@ import (
 	rdsinstances "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/rds/instances"
 	rdsnodes "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/rds/nodes"
 	rdsparameters "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/rds/parameters"
+	elbflavors "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/flavors"
+	elbhealthmonitors "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/healthmonitors"
+	elbipgroups "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/ipgroups"
+	elblisteners "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/listeners"
+	elbloadbalancers "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/loadbalancers"
+	elbmembers "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/members"
+	elbpolicies "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/policies"
+	elbpools "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/pools"
+	elbrules "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/rules"
 	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/objectstorage/obs/buckets"
 	"github.com/akyriako/o7k/pluginsdk"
 )
@@ -33,6 +42,15 @@ func main() {
 		dcsinstances.NewDcsInstances(p),
 		dcsparameters.NewDcsParameters(p),
 		dcswhitelists.NewDcsWhitelists(p),
+		elbloadbalancers.NewElbLoadBalancers(p),
+		elblisteners.NewElbListeners(p),
+		elbpools.NewElbPools(p),
+		elbmembers.NewElbMembers(p),
+		elbhealthmonitors.NewElbHealthMonitors(p),
+		elbpolicies.NewElbPolicies(p),
+		elbrules.NewElbRules(p),
+		elbflavors.NewElbFlavors(p),
+		elbipgroups.NewElbIpGroups(p),
 	)
 
 	pluginsdk.Serve(p)

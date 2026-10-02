@@ -30,7 +30,7 @@ func (r *Resource) Title() string {
 }
 
 func (r *Resource) Aliases() []string {
-	return nil
+	return []string{"rds"}
 }
 
 func (r *Resource) Columns() []pluginsdk.Column {

@@ -99,3 +99,9 @@ func (p *Plugin) RDSV3(ctx context.Context) (*golangsdk.ServiceClient, error) {
 		return openstack.NewRDSV3(provider, golangsdk.EndpointOpts{Region: current.Region})
 	})
 }
+
+func (p *Plugin) ELBV3(ctx context.Context) (*golangsdk.ServiceClient, error) {
+	return pluginsdk.GetServiceClient(ctx, p.provider, "elb-v3", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
+		return openstack.NewELBV3(provider, golangsdk.EndpointOpts{Region: current.Region})
+	})
+}
