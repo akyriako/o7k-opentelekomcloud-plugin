@@ -51,3 +51,9 @@ func connectClient(_ context.Context, current pluginsdk.Context) (*golangsdk.Pro
 
 	return provider, nil
 }
+
+func (p *Plugin) DCSV2(ctx context.Context) (*golangsdk.ServiceClient, error) {
+	return pluginsdk.GetServiceClient(ctx, p.provider, "dcs-v2", func(provider *golangsdk.ProviderClient, current pluginsdk.Context) (*golangsdk.ServiceClient, error) {
+		return openstack.NewDCSServiceV2(provider, golangsdk.EndpointOpts{Region: current.Region})
+	})
+}

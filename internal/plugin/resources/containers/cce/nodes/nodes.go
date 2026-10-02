@@ -38,7 +38,7 @@ func (r *Resource) Aliases() []string {
 func (r *Resource) Columns() []pluginsdk.Column {
 	return []pluginsdk.Column{
 		{Key: "id", Title: "ID", MinWidth: 40},
-		{Key: "name", Title: "NAME", MinWidth: 24, Flex: 1},
+		{Key: "name", Title: "NAME", MinWidth: 24, Flex: 2},
 		{Key: "status", Title: "STATUS", MinWidth: 12},
 		{Key: "az", Title: "AVAILABILITY ZONE", MinWidth: 8, Flex: 1},
 		{Key: "internal_ip", Title: "INTERNAL IP", MinWidth: 16},

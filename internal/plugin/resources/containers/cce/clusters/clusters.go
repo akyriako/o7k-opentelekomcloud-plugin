@@ -96,7 +96,7 @@ func (r *Resource) Commands() []pluginsdk.Command {
 		{Key: "shift-n", Description: "Nodes", Default: true},
 		{Key: "shift-p", Description: "Node Pools"},
 		{Key: "shift-k", Description: "Show Kubeconfig"},
-		{Key: "ctrl+k", Description: "Get Kubeconfig", StatusLabel: "Downloading..."},
+		{Key: "ctrl+k", Description: "Get Kubeconfig", StatusLabel: "Downloading"},
 	}
 }
 

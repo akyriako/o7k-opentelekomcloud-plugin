@@ -42,6 +42,7 @@ func (r *Resource) Columns() []pluginsdk.Column {
 		{Key: "id", Title: "ID", MinWidth: 36},
 		{Key: "name", Title: "NAME", MinWidth: 24, Flex: 1},
 		{Key: "flavor", Title: "FLAVOR", MinWidth: 16},
+		{Key: "az", Title: "AZ", MinWidth: 8},
 		{Key: "os", Title: "OS", MinWidth: 16},
 		{Key: "nodes", Title: "NODES", MinWidth: 8},
 		{Key: "status", Title: "STATUS", MinWidth: 12, Flex: 1},
@@ -79,6 +80,7 @@ func (r *Resource) List(ctx context.Context) ([]pluginsdk.Row, error) {
 				"os":              nodePool.Spec.NodeTemplate.Os,
 				"cluster_id":      clusterID,
 				"security_groups": strings.Join(nodePool.Spec.CustomSecurityGroupIds, ","),
+				"az":              nodePool.Spec.NodeTemplate.Az,
 			},
 		})
 	}
@@ -91,8 +93,8 @@ func (r *Resource) Commands() []pluginsdk.Command {
 		{Key: "s", Description: "Show", Default: true},
 		{Key: "shift-f", Description: "Flavor"},
 		{Key: "shift-g", Description: "Security Group"},
-		{Key: "ctrl+u", Description: "Scale Up", StatusLabel: "Scaling up..."},
-		{Key: "ctrl+d", Description: "Scale Down", StatusLabel: "Scaling down..."},
+		{Key: "ctrl+u", Description: "Scale Up", StatusLabel: "Scaling up"},
+		{Key: "ctrl+d", Description: "Scale Down", StatusLabel: "Scaling down"},
 	}
 }
 

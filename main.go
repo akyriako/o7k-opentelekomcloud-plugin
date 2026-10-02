@@ -5,6 +5,9 @@ import (
 	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/clusters"
 	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/nodepools"
 	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/nodes"
+	dcsinstances "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/dcs/instances"
+	dcsparameters "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/dcs/parameters"
+	dcswhitelists "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/dcs/whitelists"
 	rdsbackups "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/rds/backups"
 	rdsflavors "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/rds/flavors"
 	rdsinstances "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/rds/instances"
@@ -27,6 +30,9 @@ func main() {
 		rdsnodes.NewRdsNodes(p),
 		rdsbackups.NewRdsBackups(p),
 		rdsparameters.NewRdsParameters(p),
+		dcsinstances.NewDcsInstances(p),
+		dcsparameters.NewDcsParameters(p),
+		dcswhitelists.NewDcsWhitelists(p),
 	)
 
 	pluginsdk.Serve(p)
