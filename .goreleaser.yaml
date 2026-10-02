@@ -1,0 +1,49 @@
+version: 2
+
+project_name: o7k-opentelekomcloud-plugin
+
+builds:
+  - id: o7k-opentelekomcloud-plugin
+    main: ./main.go
+    binary: o7k-opentelekomcloud-plugin
+
+    env:
+      - CGO_ENABLED=0
+
+    goos:
+      - linux
+      - darwin
+
+    goarch:
+      - amd64
+      - arm64
+
+    flags:
+      - -trimpath
+
+    ldflags:
+      - -s -w
+      - -X github.com/akyriako/o7k-opentelekomcloud-plugin/internal/version.Version={{ .Version }}
+      - -X github.com/akyriako/o7k-opentelekomcloud-plugin/internal/version.Commit={{ .ShortCommit }}
+      - -X github.com/akyriako/o7k-opentelekomcloud-plugin/internal/version.BuildDate={{ .Date }}
+
+archives:
+  - id: binaries
+    ids:
+      - o7k-opentelekomcloud-plugin
+
+    formats:
+      - binary
+
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- .Os }}_
+      {{- .Arch }}
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  use: git
+  sort: asc

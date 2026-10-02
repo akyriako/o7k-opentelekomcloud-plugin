@@ -3,12 +3,10 @@ module github.com/akyriako/o7k-opentelekomcloud-plugin
 go 1.26.7
 
 require (
-	github.com/akyriako/o7k/pluginsdk v0.0.0-20260929044918-34e014877c9b
+	github.com/akyriako/o7k/pluginsdk v0.0.0-20261002092120-06f5ef617b51
 	github.com/opentelekomcloud/gophertelekomcloud v0.9.9
 	gopkg.in/yaml.v3 v3.0.1
 )
-
-replace github.com/akyriako/o7k/pluginsdk => ../o7k/pluginsdk
 
 require (
 	github.com/fatih/color v1.13.0 // indirect

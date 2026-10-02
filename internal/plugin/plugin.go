@@ -1,6 +1,7 @@
 package plugin
 
 import (
+	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/version"
 	"github.com/akyriako/o7k/pluginsdk"
 	golangsdk "github.com/opentelekomcloud/gophertelekomcloud"
 )
@@ -27,7 +28,7 @@ func (p *Plugin) Register(resources ...pluginsdk.Resource) {
 func (p *Plugin) Metadata() pluginsdk.Metadata {
 	return pluginsdk.Metadata{
 		Name:    "T Cloud Public",
-		Version: "0.2.0-dev.34",
+		Version: version.Version,
 		Color:   "#E20074",
 	}
 }
