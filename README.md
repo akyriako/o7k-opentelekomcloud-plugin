@@ -1,8 +1,8 @@
-# o7k Open Telekom Cloud Plugin
+# o7k T Cloud Public  Plugin
 
-Open Telekom Cloud provider plugin for [o7k](https://github.com/akyriako/o7k).
+T Cloud Public provider plugin for [o7k](https://github.com/akyriako/o7k).
 
-The plugin adds support for browsing and interacting with Open Telekom Cloud resources directly from o7k.
+The plugin adds support for browsing and interacting with T Cloud Public resources directly from o7k.
 
 ## Installation
 
