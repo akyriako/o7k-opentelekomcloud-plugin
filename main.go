@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin"
-	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/clusters"
-	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/nodepools"
-	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/nodes"
+	cceclusters "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/clusters"
+	ccenodepools "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/nodepools"
+	ccenodes "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/containers/cce/nodes"
 	dcsinstances "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/dcs/instances"
 	dcsparameters "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/dcs/parameters"
 	dcswhitelists "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/databases/dcs/whitelists"
@@ -22,7 +22,7 @@ import (
 	elbpolicies "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/policies"
 	elbpools "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/pools"
 	elbrules "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/networking/elb/rules"
-	"github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/objectstorage/obs/buckets"
+	obsbuckets "github.com/akyriako/o7k-opentelekomcloud-plugin/internal/plugin/resources/objectstorage/obs/buckets"
 	"github.com/akyriako/o7k/pluginsdk"
 )
 
@@ -30,10 +30,10 @@ func main() {
 	p := plugin.New()
 
 	p.Register(
-		clusters.NewCceClusters(p),
-		nodes.NewCceNodes(p),
-		nodepools.NewCceNodePools(p),
-		buckets.NewObsBuckets(p),
+		cceclusters.NewCceClusters(p),
+		ccenodes.NewCceNodes(p),
+		ccenodepools.NewCceNodePools(p),
+		obsbuckets.NewObsBuckets(p),
 		rdsinstances.NewRdsInstances(p),
 		rdsflavors.NewRdsFlavors(p),
 		rdsnodes.NewRdsNodes(p),
