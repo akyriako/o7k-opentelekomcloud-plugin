@@ -27,7 +27,7 @@ func (p *Plugin) Register(resources ...pluginsdk.Resource) {
 
 func (p *Plugin) Metadata() pluginsdk.Metadata {
 	return pluginsdk.Metadata{
-		Name:    "T Cloud Public",
+		Name:    "T Cloud Public (fka Open Telekom Cloud)",
 		Version: version.Version,
 		Color:   "#E20074",
 	}
