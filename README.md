@@ -11,7 +11,23 @@ Get the URL of the appropriate binary for your platform from the
 page and install it in the o7k plugin directory, e.g.:
 
 ```bash
-o7k plugin install https://github.com/akyriako/o7k-opentelekomcloud-plugin/releases/download/v0.1.0/o7k-opentelekomcloud-plugin_0.1.0_linux_amd64
+VERSION=$(curl -fsSLI -o /dev/null -w '%{url_effective}' \
+  https://github.com/akyriako/o7k-opentelekomcloud-plugin/releases/latest \
+  | sed 's#.*/tag/##')
+
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+
+case "$(uname -m)" in
+  x86_64|amd64)  ARCH="amd64" ;;
+  aarch64|arm64) ARCH="arm64" ;;
+  *)
+    echo "Unsupported architecture: $(uname -m)" >&2
+    exit 1
+    ;;
+esac
+
+o7k plugin install \
+  "https://github.com/akyriako/o7k-opentelekomcloud-plugin/releases/download/${VERSION}/o7k-opentelekomcloud-plugin_${VERSION#v}_${OS}_${ARCH}"
 ```
 
 Restart o7k after installing or updating the plugin.
