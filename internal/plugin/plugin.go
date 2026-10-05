@@ -30,6 +30,7 @@ func (p *Plugin) Metadata() pluginsdk.Metadata {
 		Name:    "T Cloud Public (fka Open Telekom Cloud)",
 		Version: version.Version,
 		Color:   "#E20074",
+		URL:     "https://github.com/akyriako/o7k-opentelekomcloud-plugin",
 	}
 }
 

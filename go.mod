@@ -3,7 +3,7 @@ module github.com/akyriako/o7k-opentelekomcloud-plugin
 go 1.26.7
 
 require (
-	github.com/akyriako/o7k/pluginsdk v0.0.0-20261002092120-06f5ef617b51
+	github.com/akyriako/o7k/pluginsdk v0.0.0-20261005074144-d76f53bdb6c1
 	github.com/opentelekomcloud/gophertelekomcloud v0.9.9
 	gopkg.in/yaml.v3 v3.0.1
 )
