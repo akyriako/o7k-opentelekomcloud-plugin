@@ -136,6 +136,30 @@ func (r *Resource) getKubeconfig(ctx context.Context, row pluginsdk.Row) (plugin
 	return pluginsdk.Result{}, nil
 }
 
+func (r *Resource) getKubeconfigData(ctx context.Context, clusterID string) ([]byte, error) {
+	client, err := r.plugin.CCEV3(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("getting CCE client: %w", err)
+	}
+
+	cert, err := clusters.GetCert(client, clusterID)
+	if err != nil {
+		return nil, fmt.Errorf("getting kubeconfig for CCE cluster %q: %w", clusterID, err)
+	}
+
+	jsonData, err := json.Marshal(cert)
+	if err != nil {
+		return nil, fmt.Errorf("encoding kubeconfig for CCE cluster %q: %w", clusterID, err)
+	}
+
+	var kubeconfig any
+	if err := yaml.Unmarshal(jsonData, &kubeconfig); err != nil {
+		return nil, fmt.Errorf("converting kubeconfig for CCE cluster %q: %w", clusterID, err)
+	}
+
+	return yaml.Marshal(kubeconfig)
+}
+
 func (r *Resource) nodePools(ctx context.Context, row pluginsdk.Row) (pluginsdk.Result, error) {
 	scope := make(map[string]string)
 	maps.Copy(scope, pluginsdk.Scope(ctx))
@@ -145,6 +169,38 @@ func (r *Resource) nodePools(ctx context.Context, row pluginsdk.Row) (pluginsdk.
 		Navigate: &pluginsdk.Navigate{
 			Resource: "cce-nodepools",
 			Scope:    scope,
+		},
+	}, nil
+}
+
+func (r *Resource) k9s(ctx context.Context, row pluginsdk.Row) (pluginsdk.Result, error) {
+	data, err := r.getKubeconfigData(ctx, row.ID)
+	if err != nil {
+		return pluginsdk.Result{}, err
+	}
+
+	f, err := os.CreateTemp("", "o7k-generated_kubeconfig-*.yaml")
+	if err != nil {
+		return pluginsdk.Result{}, fmt.Errorf("creating temporary kubeconfig failed: %w", err)
+	}
+
+	path := f.Name()
+
+	if _, err := f.Write(data); err != nil {
+		f.Close()
+		os.Remove(path)
+		return pluginsdk.Result{}, fmt.Errorf("writing temporary kubeconfig failed: %w", err)
+	}
+
+	if err := f.Close(); err != nil {
+		os.Remove(path)
+		return pluginsdk.Result{}, fmt.Errorf("closing temporary kubeconfig failed: %w", err)
+	}
+
+	return pluginsdk.Result{
+		Terminal: &pluginsdk.Terminal{
+			Command: "k9s",
+			Args:    []string{"--kubeconfig", path},
 		},
 	}, nil
 }

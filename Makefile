@@ -1,8 +1,8 @@
 # Configuration variables
 APP ?= o7k-opentelekomcloud-plugin
 
-TAG ?= 0.1.0
-ITERATION ?= 1
+TAG ?= 0.1.4
+ITERATION ?= 4
 TARGET_ENV ?= dev
 
 VERSION ?= $(TAG)-$(TARGET_ENV).$(ITERATION)
