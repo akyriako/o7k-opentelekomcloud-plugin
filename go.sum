@@ -1,5 +1,5 @@
-github.com/akyriako/o7k/pluginsdk v0.0.0-20261022064217-2a65d28b732c h1:Ert7Sg1/Zw7JKl/B8hKIpDZ+EAGuR3uwKC1HFFsznUo=
-github.com/akyriako/o7k/pluginsdk v0.0.0-20261022064217-2a65d28b732c/go.mod h1:CjSsmDvjBzSoONHjlVf3A0G7YTjW8cG5+Aa2Z0G4r1w=
+github.com/akyriako/o7k/pluginsdk v0.0.0-20261023120803-d290db8c3979 h1:ha9FdBI3EUcPkB43d5qlMDgT8cDf8F0I5lgy6Cy3tS0=
+github.com/akyriako/o7k/pluginsdk v0.0.0-20261023120803-d290db8c3979/go.mod h1:CjSsmDvjBzSoONHjlVf3A0G7YTjW8cG5+Aa2Z0G4r1w=
 github.com/bufbuild/protocompile v0.14.1 h1:iA73zAf/fyljNjQKwYzUHD6AD4R8KMasmwa/FBatYVw=
 github.com/bufbuild/protocompile v0.14.1/go.mod h1:ppVdAIhbr2H8asPk6k4pY7t9zB1OU5DoEw9xY/FUi1c=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

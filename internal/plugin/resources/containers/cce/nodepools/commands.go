@@ -100,5 +100,5 @@ func (r *Resource) scale(ctx context.Context, row pluginsdk.Row, delta int) (plu
 		return pluginsdk.Result{}, fmt.Errorf("scaling CCE node pool %q to %d nodes: %w", row.ID, nodeCount, err)
 	}
 
-	return pluginsdk.Result{}, nil
+	return pluginsdk.Result{RefreshOnComplete: true}, nil
 }
